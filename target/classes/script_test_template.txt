@@ -1,0 +1,16 @@
+import org.junit.Before;
+import org.junit.Test;
+import static junit.framework.TestCase.assertEquals;
+
+public class %sTest {
+
+    private %s %s;
+
+    @Before
+    public void setup(){
+        %s = new %s();
+    }
+
+%s
+
+}
