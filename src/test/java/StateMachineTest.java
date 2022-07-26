@@ -11,11 +11,14 @@ import static org.junit.Assert.assertTrue;
 
 public class StateMachineTest {
 
-    public static final List<List<String>> transitionTable = new ArrayList<>();
-    public static final List<List<String>> eventActionTable = new ArrayList<>();
+    public static List<List<String>> transitionTable;
+    public static List<List<String>> eventActionTable;
 
     @Before
     public void init() throws IOException {
+
+        transitionTable = new ArrayList<>();
+        eventActionTable = new ArrayList<>();
 
         transitionTable.add(new ArrayList<String>(Arrays.asList("states/events","home"," wrong password"," correct password","lock button"," long lock button")));
         transitionTable.add(new ArrayList<String>(Arrays.asList("OFF","LOCKED")));
@@ -31,39 +34,46 @@ public class StateMachineTest {
 
     }
 
-    //@Test
-    //public void test_mount_state_machine() throws IOException {
-//
-    //    StateMachine stateMachine = new StateMachine(transitionTable, eventActionTable);
-    //    assertEquals(5, stateMachine.getEvents().size());
-    //    assertEquals(3, stateMachine.getStates().size());
-    //    assertTrue(stateMachine.getAdjStates("OFF", "home").getLabel().startsWith("LOCKED"));
-    //    assertTrue(stateMachine.getAdjStates("LOCKED", "correct password").getLabel().startsWith("UNLOCKED"));
-    //    assertTrue(stateMachine.getAdjStates("UNLOCKED", "long lock button").getLabel().startsWith("OFF"));
-//
-    //}
-//
-    //@Test
-    //public void test_print_transition_tree() throws IOException {
-//
-    //    StateMachine stateMachine = new StateMachine(transitionTable, eventActionTable);
-    //    System.out.println(stateMachine.printTransitionTree());
-//
-    //}
-//
-    //@Test
-    //public void test_print_basis_path() throws IOException {
-//
-    //    StateMachine stateMachine = new StateMachine(transitionTable, eventActionTable);
-    //    System.out.println(stateMachine.printBasisPath());
-//
-    //}
+    @Test
+    public void test_mount_state_machine() throws IOException {
+
+        StateMachine stateMachine = new StateMachine(transitionTable, eventActionTable);
+
+        assertEquals(5, stateMachine.getEvents().size());
+        assertEquals(3, stateMachine.getStates().size());
+        assertTrue(stateMachine.getAdjStates("OFF", "home").getLabel().startsWith("LOCKED"));
+        assertTrue(stateMachine.getAdjStates("LOCKED", "correct password").getLabel().startsWith("UNLOCKED"));
+        assertTrue(stateMachine.getAdjStates("UNLOCKED", "long lock button").getLabel().startsWith("OFF"));
+
+    }
+
+    @Test
+    public void test_print_transition_tree() throws IOException {
+
+        StateMachine stateMachine = new StateMachine(transitionTable, eventActionTable);
+
+        System.out.println(stateMachine.getTransitionTree());
+        // TODO assert equals file
+
+    }
+
+    @Test
+    public void test_print_basis_path() throws IOException {
+
+        StateMachine stateMachine = new StateMachine(transitionTable, eventActionTable);
+
+        System.out.println(stateMachine.getBasisPaths());
+        // TODO assert equals file
+
+    }
 
     @Test
     public void test_print_script_test() throws IOException {
 
         StateMachine stateMachine = new StateMachine(transitionTable, eventActionTable);
-        System.out.println(stateMachine.printTestScript());
+
+        System.out.println(stateMachine.getTestScript());
+        // TODO assert equals file
 
     }
 

@@ -130,7 +130,7 @@ public class StateMachine {
         return states.get(new State(stateLabel)).get(eventLabel);
     }
 
-    public String printTransitionTree() {
+    public String getTransitionTree() {
 
         StringBuffer sb = new StringBuffer();
         for(State s1 : transitionTree.keySet()) {
@@ -148,7 +148,7 @@ public class StateMachine {
 
     }
 
-    public String printBasisPath() {
+    public String getBasisPaths() {
 
         StringBuffer sb = new StringBuffer();
         for(List<Map<String, State>> basicPath : basisPaths) {
@@ -166,7 +166,7 @@ public class StateMachine {
 
     }
 
-    public String printTestScript() {
+    public String getTestScript() {
 
         String singleTestFilePath = getClass().getResource("single_test_template.txt").getPath();
         String singleTestTemplate = FileUtil.readFile(singleTestFilePath);
