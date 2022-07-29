@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static StateMachine stateMachine;
+    private static TestGenerator stateMachine;
 
     public static void main(String[] args) throws IOException {
 
@@ -25,17 +25,27 @@ public class Main {
             System.out.print("Digite o caminho do mapeamento de eventos/ações (csv): ");
             List<List<String>> eventActionTable = FileUtil.readCSVFile(scanner.nextLine(), 2);
 
-            StateMachine stateMachine = new StateMachine(transitionTable, eventActionTable);
+            TestGenerator stateMachine = new TestGenerator(transitionTable, eventActionTable);
 
-            System.out.println("----------\n");
+            System.out.println("\n----------\n");
 
-            System.out.println("Árvore de transição:\n");
-            System.out.println(stateMachine.getTransitionTree());
+            System.out.println("Árvore de transição de caminhos básicos:\n");
+            System.out.println(stateMachine.getBasisTransitionTree());
+
+            System.out.println("\n----------\n");
+
+            System.out.println("Árvore de transição de caminhos secretos:\n");
+            System.out.println(stateMachine.getSecretTransitionTree());
 
             System.out.println("\n----------\n");
 
             System.out.println("Caminhos básicos:\n");
             System.out.println(stateMachine.getBasisPaths());
+
+            System.out.println("\n----------\n");
+
+            System.out.println("Caminhos secretos:\n");
+            System.out.println(stateMachine.getSecretPaths());
 
             System.out.println("\n----------\n");
 

@@ -11,7 +11,7 @@ public class FileUtilTest {
     @Test
     public void test() throws IOException {
 
-        String filePath = getClass().getResource("smartphone_transition_table.csv").getPath();
+        String filePath = getClass().getResource("input/smartphone_transition_table.csv").getPath();
 
         List<List<String>> lists = FileUtil.readCSVFile(filePath, 0);
 

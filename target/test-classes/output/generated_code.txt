@@ -1,0 +1,186 @@
+import org.junit.Before;
+import org.junit.Test;
+import static junit.framework.TestCase.assertEquals;
+
+public class SDeviceTest {
+
+    private SDevice sdevice;
+
+    @Before
+    public void setup(){
+        sdevice = new SDevice();
+    }
+
+    @Test
+    public void testaCaminhoBasico01(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.longLockButton();
+		assertEquals("OFF", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoBasico02(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.login(“wrong”,”wrong”);
+		assertEquals("LOCKED", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoBasico03(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.login(“login”,”password”);
+		assertEquals("UNLOCKED", SDevice.getState());
+
+		SDevice.longLockButton();
+		assertEquals("OFF", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoBasico04(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.login(“login”,”password”);
+		assertEquals("UNLOCKED", SDevice.getState());
+
+		SDevice.lockButton();
+		assertEquals("LOCKED", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto01(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.longLockButton();
+		assertEquals("OFF", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto02(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.lockButton();
+		assertEquals("OFF", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto03(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.lockButton();
+		assertEquals("LOCKED", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto04(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.login(“login”,”password”);
+		assertEquals("UNLOCKED", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("UNLOCKED", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto05(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.login(“login”,”password”);
+		assertEquals("UNLOCKED", SDevice.getState());
+
+		SDevice.login(“wrong”,”wrong”);
+		assertEquals("UNLOCKED", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto06(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.login(“login”,”password”);
+		assertEquals("UNLOCKED", SDevice.getState());
+
+		SDevice.login(“login”,”password”);
+		assertEquals("UNLOCKED", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto07(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+		SDevice.home();
+		assertEquals("LOCKED", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto08(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.login(“wrong”,”wrong”);
+		assertEquals("OFF", SDevice.getState());
+
+    }
+
+    @Test
+    public void testaCaminhoSecreto09(){
+
+		assertEquals("OFF", SDevice.getState());
+
+		SDevice.login(“login”,”password”);
+		assertEquals("OFF", SDevice.getState());
+
+    }
+
+}

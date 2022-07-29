@@ -17,12 +17,20 @@ public class FileUtil {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(COMMA_DELIMITER, limit);
-                records.add(Arrays.asList(values));
+                records.add(new ArrayList(Arrays.asList(values)));
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        long columnsLength = records.get(0).size();
+        for (int i = 1; i < records.size(); i++) {
+            long lineLength = records.get(i).size();
+            for (int j = 0; j < columnsLength - lineLength; j++) {
+                records.get(i).add("");
+            }
         }
 
         return records;
